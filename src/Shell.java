@@ -2,7 +2,7 @@ import java.util.Arrays;
 
 public class Shell {
 
-    public static void sort(int[] array, boolean asc) {
+    public static int[] sort(int[] array, boolean asc) {
 
         int comparaciones = 0;
         int cambios = 0;
@@ -10,30 +10,49 @@ public class Shell {
 
         int n = array.length;
 
-        for (int gap = n / 2; gap > 0; gap /= 2) {
+        System.out.println("Arreglo original:");
+        System.out.println(Arrays.toString(array));
+
+        for (int gap = n / 2; gap > 0; gap = gap / 2) {
+
+            System.out.println("\nGAP = " + gap);
 
             for (int i = gap; i < n; i++) {
+
                 int temp = array[i];
                 int j = i;
 
-                while (j >= gap && (asc ? array[j - gap] > temp : array[j - gap] < temp)) {
+                System.out.println("\ni=" + i);
+
+                while (j >= gap) {
+
+                    boolean condicion = asc ? array[j - gap] > temp : array[j - gap] < temp;
                     comparaciones++;
 
-                    array[j] = array[j - gap];
-                    j -= gap;
-                    cambios++;
+                    System.out.printf("i=%-3d j=%-3d [a]=%-4d [b]=%-4d cambio=%s\n",
+                            i, j, array[j - gap], temp, (condicion ? "si" : "no"));
 
-                    System.out.println("Paso: " + Arrays.toString(array));
+                    if (condicion) {
+                        array[j] = array[j - gap];
+                        j = j - gap;
+                        cambios++;
+                    } else {
+                        break;
+                    }
                 }
 
                 array[j] = temp;
                 iteraciones++;
+
+                System.out.println(Arrays.toString(array));
             }
         }
 
-        System.out.println("Resultado: " + Arrays.toString(array));
-        System.out.println("Comparaciones: " + comparaciones);
-        System.out.println("Cambios: " + cambios);
-        System.out.println("Iteraciones: " + iteraciones);
+        System.out.println("\nend " + Arrays.toString(array));
+        System.out.println("COMPARACIONES: " + comparaciones);
+        System.out.println("ITERACIONES: " + iteraciones);
+        System.out.println("CAMBIOS: " + cambios);
+
+        return new int[]{comparaciones, cambios, iteraciones};
     }
 }

@@ -1,12 +1,12 @@
-### UNIVERSIDAD POLITECNICA SALESIANA 
+# UNIVERSIDAD POLITECNICA SALESIANA 
 
 ## Ordenamiento con Inserción y Shell
 
 ## Datos del estudiante
 
-# Nombre: Nicole Estefania Domínguez Muñoz
-# Curso: Estructura de Datos G2
-# Fecha: 05/05/2026
+## Nombre: Nicole Estefania Domínguez Muñoz
+## Curso: Estructura de Datos G2
+## Fecha: 05/05/2026
 
 ## Actividad: icc-est-u4-PracticaMetodosOrdenamiento
 

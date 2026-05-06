@@ -6,50 +6,52 @@ public class App {
     static int[] arreglo = {12, -7, 25, 0, -15, 33, 19, -22, 5, 48, -3};
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int opcion;
 
-        do {
-            System.out.println("PROGRAMA DE ORDENAMIENTO ");
+        Scanner scanner = new Scanner(System.in);
+        int opcion = 0;
+
+        while (opcion != 2) {
+
+            System.out.println("\nMENU");
             System.out.println("1. Ejecutar ordenamientos");
             System.out.println("2. Salir");
             System.out.print("Seleccione: ");
-            opcion = sc.nextInt();
+            opcion = scanner.nextInt();
 
-            switch (opcion) {
-                case 1:
-                    ejecutar(sc);
-                    break;
-                case 2:
-                    System.out.println("Saliendo...");
-                    break;
-                default:
-                    System.out.println("Opción inválida");
+            if (opcion == 1) {
+
+                System.out.println("\nArreglo original: " + Arrays.toString(arreglo));
+
+                System.out.print("Insercion ascendente (true/false): ");
+                boolean asc1 = scanner.nextBoolean();
+
+                System.out.print("Shell ascendente (true/false): ");
+                boolean asc2 = scanner.nextBoolean();
+
+                int[] copia1 = arreglo.clone();
+                int[] copia2 = arreglo.clone();
+
+                System.out.println("\n===== METODO INSERCION =====");
+                int[] res1 = Insertion.sort(copia1, asc1);
+
+                System.out.println("\n===== METODO SHELL =====");
+                int[] res2 = Shell.sort(copia2, asc2);
+
+                System.out.println("\n===== RESUMEN =====");
+                System.out.println("Insercion - Comparaciones: " + res1[0] +
+                                   ", Cambios: " + res1[1] +
+                                   ", Iteraciones: " + res1[2]);
+
+                System.out.println("Shell - Comparaciones: " + res2[0] +
+                                   ", Cambios: " + res2[1] +
+                                   ", Iteraciones: " + res2[2]);
+            } 
+            else if (opcion != 2) {
+                System.out.println("Opcion invalida");
             }
+        }
 
-        } while (opcion != 2);
-
-        sc.close();
-    }
-
-    public static void ejecutar(Scanner sc) {
-
-        System.out.println("\nArreglo original: " + Arrays.toString(arreglo));
-
-        System.out.print("¿Inserción ascendente? (true/false): ");
-        boolean ascInsercion = sc.nextBoolean();
-
-        System.out.print("¿Shell ascendente? (true/false): ");
-        boolean ascShell = sc.nextBoolean();
-
-
-        int[] copia1 = Arrays.copyOf(arreglo, arreglo.length);
-        int[] copia2 = Arrays.copyOf(arreglo, arreglo.length);
-
-        System.out.println("METODO INSERCIÓN");
-        Insertion.sort(copia1, ascInsercion);
-
-        System.out.println("METODO SHELL ");
-        Shell.sort(copia2, ascShell);
+        scanner.close();
+        System.out.println("Fin del programa");
     }
 }
